@@ -1,0 +1,12 @@
+/**
+\mainpage Welcome to LSD library
+
+\section Introduction
+
+Here comes some bla-bla about the usage...
+
+<code>
+#include <lsd>
+</code>
+
+*/

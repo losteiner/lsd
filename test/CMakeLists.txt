@@ -1,0 +1,20 @@
+message( STATUS ${CMAKE_SOURCE_DIR} )
+
+################################
+# GTest
+################################
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+include_directories( ${CMAKE_SOURCE_DIR}/include )
+include_directories( ${CMAKE_SOURCE_DIR}/src )
+
+add_executable( AllTests
+    AllTests.cpp
+    generic/unittest_lsd_bitfieldcounter.cpp
+)
+
+target_link_libraries( AllTests
+    #Foo
+    gtest
+    #${Boost_LIBRARIES}
+)
