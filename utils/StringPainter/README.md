@@ -1,4 +1,4 @@
-StringDrawer
+StringPainter
 ===========
 
 Change actual directory to build:
