@@ -60,13 +60,10 @@ class CStringContainer
             CPainterLine l_newLine;
             float l_wFactor_f32 = (static_cast<float>(m_reprWidth_i32) / static_cast<float>(f_canvasWidth_i32));
             float l_hFactor_f32 = (static_cast<float>(m_reprHeight_i32) / static_cast<float>(f_canvasHeight_i32));
-            int l_wReprStartX_i32 = m_origoHorizOffset_i32 - static_cast<int>( f_canvasLine_r.startPoint.x * l_wFactor_f32);
-            int l_wReprStartY_i32 = m_origoVertOffset_i32  - static_cast<int>( f_canvasLine_r.startPoint.y* l_hFactor_f32);
-            int l_wReprEndX_i32 = m_origoHorizOffset_i32 - static_cast<int>( f_canvasLine_r.endPoint.x* l_wFactor_f32);
-            int l_wReprEndY_i32 = m_origoVertOffset_i32  - static_cast<int>( f_canvasLine_r.endPoint.y* l_hFactor_f32);
-            l_newLine.startPoint = cv::Point( l_wReprStartX_i32, l_wReprStartY_i32);
-            l_newLine.endPoint   = cv::Point( l_wReprEndX_i32, l_wReprEndY_i32);
-
+            l_newLine.startPoint.x = m_origoHorizOffset_i32 - static_cast<int>( f_canvasLine_r.startPoint.x * l_wFactor_f32);
+            l_newLine.startPoint.y = m_origoVertOffset_i32  - static_cast<int>( f_canvasLine_r.startPoint.y* l_hFactor_f32);
+            l_newLine.endPoint.x = m_origoHorizOffset_i32 - static_cast<int>( f_canvasLine_r.endPoint.x* l_wFactor_f32);
+            l_newLine.endPoint.y = m_origoVertOffset_i32  - static_cast<int>( f_canvasLine_r.endPoint.y* l_hFactor_f32);
 
             if(PREV_FRAME == f_pointFrame_e)
             {
@@ -123,12 +120,10 @@ class CStringContainer
                 CPainterLine l_canvasLine;
                 float l_wFactor_f32 = (static_cast<float>(f_canvasWidth_i32) / static_cast<float>(m_reprWidth_i32));
                 float l_hFactor_f32 = (static_cast<float>(f_canvasHeight_i32) / static_cast<float>(m_reprHeight_i32));
-                int l_wCanvStartX_i32 = static_cast<int>( (m_origoHorizOffset_i32 - l_reprLine.startPoint.x)* l_wFactor_f32);
-                int l_wCanvStartY_i32 = static_cast<int>( (m_origoVertOffset_i32  - l_reprLine.startPoint.y)* l_hFactor_f32);
-                int l_wCanvEndX_i32 = static_cast<int>( (m_origoHorizOffset_i32 - l_reprLine.endPoint.x)* l_wFactor_f32);
-                int l_wCanvEndY_i32 = static_cast<int>( (m_origoVertOffset_i32  - l_reprLine.endPoint.y)* l_hFactor_f32);
-                l_canvasLine.startPoint = cv::Point( l_wCanvStartX_i32, l_wCanvStartY_i32);
-                l_canvasLine.endPoint   = cv::Point( l_wCanvEndX_i32, l_wCanvEndY_i32);
+                l_canvasLine.startPoint.x = static_cast<int>( (m_origoHorizOffset_i32 - l_reprLine.startPoint.x)* l_wFactor_f32);
+                l_canvasLine.startPoint.y = static_cast<int>( (m_origoVertOffset_i32  - l_reprLine.startPoint.y)* l_hFactor_f32);
+                l_canvasLine.endPoint.x = static_cast<int>( (m_origoHorizOffset_i32 - l_reprLine.endPoint.x)* l_wFactor_f32);
+                l_canvasLine.endPoint.y = static_cast<int>( (m_origoVertOffset_i32  - l_reprLine.endPoint.y)* l_hFactor_f32);
 
                 f_canvasLines_rv.push_back(l_canvasLine);
             }
@@ -190,23 +185,23 @@ class CStringContainer
 };
 
 
-CStringContainer g_stringContainer(1800,1800, CStringContainer::EReprOrigo::O_BOTTOMRIGHT);
-Mat canvasImage(600, 600, CV_8UC3);
+CStringContainer g_stringContainer(1800,1800, CStringContainer::EReprOrigo::O_BOTTOMRIGHT );
+Mat canvasImage(750, 750, CV_8UC3);
 
 
 void on_mouse(int event, int x, int y, int flags, void* param)
 {
 	if (event == CV_EVENT_LBUTTONDOWN)
 	{
-		mouse_Start.x = x;
-		mouse_Start.y = y;
+		mouse_Start.x = max(0, min(x, (canvasImage.size().width-1)  ));
+		mouse_Start.y = max(0, min(y, (canvasImage.size().height-1) ));
 
 		actualPainterState_e = SM_START;
 	}
 	else if (event == CV_EVENT_LBUTTONUP)
     {
-        mouse_End.x = x;
-		mouse_End.y = y;
+        mouse_End.x = max(0, min(x, (canvasImage.size().width-1)  ) );
+		mouse_End.y = max(0, min(y, (canvasImage.size().height-1) ) );
 
 		actualPainterState_e = SM_END;
 
@@ -218,8 +213,8 @@ void on_mouse(int event, int x, int y, int flags, void* param)
     }
     else
     {
-        mouse_End.x = x;
-		mouse_End.y = y;
+        mouse_End.x = max(0, min(x, (canvasImage.size().width-1)  ) );
+		mouse_End.y = max(0, min(y, (canvasImage.size().height-1) ) );
     }
 }
 
@@ -232,7 +227,7 @@ void DrawText_vd(Mat& f_img_r )
     putText(f_img_r, l_text_str, Point(10,20), FONT_HERSHEY_PLAIN, 1.0,  Scalar::all(255), 1, 8);
 
     string l_textUsage_str = "[M] toggle mode    [S] save strings    [B] remove last string";
-    putText(f_img_r, l_textUsage_str, Point(10,590), FONT_HERSHEY_PLAIN, 0.7,  Scalar::all(255), 1, 8);
+    putText(f_img_r, l_textUsage_str, Point(10,canvasImage.size().height-20), FONT_HERSHEY_PLAIN, 0.7,  Scalar::all(255), 1, 8);
 }
 
 
