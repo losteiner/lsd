@@ -6,9 +6,9 @@ that can be used: previous and next.
 
 Usage
 ----------
-<B>M:<B> toggle between the 2 input modes (previous and next)
-<B>S:</B> save the actual buffers in a text file and the image
-<B>B:</B> Delete the last added line in the actual mode
+- <B>[M]</B> toggle between the 2 input modes (previous and next)
+- <B>[S]</B> save the actual buffers in a text file and the image
+- <B>[B]</B> Delete the last added line in the actual mode
 
 Compilation
 ---------------------
