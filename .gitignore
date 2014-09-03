@@ -1,0 +1,30 @@
+## Build folder for binaries
+build/*
+utils/*/build/*
+
+
+## Thirdparty libraries
+thirdparty/*/
+
+
+## Binary file types and obj files [desktop]
+*.a
+*.lib
+*.dll
+
+## Binary file types and obj files [embedded]
+*.bin
+*.elf
+*.hex
+*.dmp
+*.map
+*.lst
+*.o
+
+## Eclipse project files
+.cproject
+.project
+.dep/*
+.dep
+.settings/*
+.settings
