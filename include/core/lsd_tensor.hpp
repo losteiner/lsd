@@ -22,10 +22,10 @@ namespace lsd
         
         public:
             enum {SIZE = Dim1*Dim2*Dim3*Dim4 };
-            enum {DIM1 = d1 };
-            enum {DIM2 = d2 };
-            enum {DIM3 = d3 };
-            enum {DIM4 = d4 };
+            enum {DIM1 = Dim1 };
+            enum {DIM2 = Dim2 };
+            enum {DIM3 = Dim3 };
+            enum {DIM4 = Dim4 };
         
             static uint32_t indexOf(const uint32_t i) { 
             return i;
