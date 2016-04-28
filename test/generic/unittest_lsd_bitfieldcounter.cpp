@@ -1,8 +1,8 @@
 #include <iostream>
 #include "gtest/gtest.h"
 
-#include "core/lsd_core.hpp"
-#include "generic/lsd_generic.hpp"
+#include "lsd/core/lsd_core.hpp"
+#include "lsd/generic/lsd_generic.hpp"
 
 using namespace std;
 
@@ -72,7 +72,7 @@ TEST_F( CBitfieldCounterTest , SmokeTest)
 	for(lsd::uint8_t idx_u8; idx_u8 < 29; ++idx_u8)
 	{
 		l_bitfield.update( l_boolList_ab[idx_u8].m_inputValue_b);
-		cout << "IDX:" << static_cast<uint32_t>(idx_u8) << " Added:"<<  l_boolList_ab[idx_u8].m_inputValue_b << "\tresult:" << static_cast<lsd::uint32_t>( l_bitfield.get() ) << endl;
+		//cout << "IDX:" << static_cast<uint32_t>(idx_u8) << " Added:"<<  l_boolList_ab[idx_u8].m_inputValue_b << "\tresult:" << static_cast<lsd::uint32_t>( l_bitfield.get() ) << endl;
 		ASSERT_EQ(  l_boolList_ab[idx_u8].m_expectedValue_u8 , l_bitfield.get() );
 
 	}

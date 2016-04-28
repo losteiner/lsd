@@ -1,8 +1,8 @@
 #include <iostream>
 #include "gtest/gtest.h"
 
-#include "core/lsd_core.hpp"
-#include "generic/lsd_matrix.hpp"
+#include "lsd/core/lsd_core.hpp"
+#include "lsd/generic/lsd_matrix.hpp"
 
 using namespace std;
 

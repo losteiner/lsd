@@ -16,8 +16,8 @@
 /// @todo: This should not use STL datatype
 #include <vector>
 
-#include "../core/lsd_types.hpp"
-#include "../core/lsd_assert.hpp"
+#include "lsd/core/lsd_types.hpp"
+#include "lsd/core/lsd_assert.hpp"
 
 namespace lsd
 {

@@ -11,7 +11,7 @@
 #pragma once
 
 /// Include section
-#include "../core/lsd_types.hpp"
+#include "lsd/core/lsd_types.hpp"
 
 
 namespace lsd

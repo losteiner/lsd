@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include "lsd_types"
+#include "lsd_types.hpp"
 
 namespace lsd
 {

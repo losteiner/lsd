@@ -5,13 +5,13 @@ message( STATUS ${CMAKE_SOURCE_DIR} )
 ################################
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-include_directories( ${CMAKE_SOURCE_DIR}/include )
+include_directories( ${CMAKE_SOURCE_DIR}/lsd )
 include_directories( ${CMAKE_SOURCE_DIR}/src )
 
 add_executable( AllTests
     AllTests.cpp
-    lsd_bitfieldcounter.hpp generic/unittest_lsd_bitfieldcounter.cpp
-    lsd_ringbuffer.hpp generic/unittest_lsd_ringbuffer.cpp
+    generic/unittest_lsd_bitfieldcounter.cpp
+    generic/unittest_lsd_ringbuffer.cpp
 )
 
 target_link_libraries( AllTests
